@@ -1,0 +1,169 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Green Gold Agro Farm — Heritage Modernist design system.
+ * Editorial, restrained, premium African agribusiness export brand.
+ * Palette: deep forest, warm ivory, muted olive, cocoa brown, antique gold, mineral stone.
+ * Typography: Fraunces (display serif) + Instrument Sans (interface).
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand semantic tokens */
+  --color-forest: var(--forest);
+  --color-forest-deep: var(--forest-deep);
+  --color-ivory: var(--ivory);
+  --color-ivory-warm: var(--ivory-warm);
+  --color-cocoa: var(--cocoa);
+  --color-gold: var(--gold);
+  --color-olive: var(--olive);
+  --color-stone: var(--stone);
+  --color-line: var(--line);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Brand palette */
+  --forest: oklch(0.32 0.04 155);
+  --forest-deep: oklch(0.22 0.035 155);
+  --ivory: oklch(0.97 0.012 85);
+  --ivory-warm: oklch(0.94 0.02 80);
+  --cocoa: oklch(0.34 0.045 55);
+  --gold: oklch(0.62 0.075 75);
+  --olive: oklch(0.48 0.05 115);
+  --stone: oklch(0.78 0.015 90);
+  --line: oklch(0.32 0.04 155 / 0.12);
+
+  /* Map shadcn semantics onto brand */
+  --background: var(--ivory);
+  --foreground: var(--forest-deep);
+  --card: var(--ivory);
+  --card-foreground: var(--forest-deep);
+  --popover: var(--ivory);
+  --popover-foreground: var(--forest-deep);
+  --primary: var(--forest);
+  --primary-foreground: var(--ivory);
+  --secondary: var(--ivory-warm);
+  --secondary-foreground: var(--forest-deep);
+  --muted: var(--ivory-warm);
+  --muted-foreground: oklch(0.45 0.025 100);
+  --accent: var(--gold);
+  --accent-foreground: var(--ivory);
+  --destructive: oklch(0.5 0.18 25);
+  --destructive-foreground: var(--ivory);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--forest);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--gold) 25%, transparent);
+    color: var(--forest-deep);
+  }
+
+  /* Editorial typography defaults */
+  .font-display {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+  }
+
+  /* Subtle film-grain texture on dark surfaces */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* Hairline rule used as editorial separator */
+  .hairline {
+    background-color: var(--line);
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: reveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+
+  .reveal-delay-1 {
+    animation-delay: 0.1s;
+  }
+  .reveal-delay-2 {
+    animation-delay: 0.22s;
+  }
+  .reveal-delay-3 {
+    animation-delay: 0.34s;
+  }
+
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
