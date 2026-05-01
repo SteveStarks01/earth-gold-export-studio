@@ -44,14 +44,11 @@ function HomePage() {
               height={1280}
               className="absolute inset-0 w-full h-full object-cover"
             />
-            {/* Readability scrim — layered for premium depth, not flat black */}
+            {/* Single editorial scrim — readability without the AI-slop multi-stop look */}
+            <div aria-hidden className="absolute inset-0 bg-forest-deep/55" />
             <div
               aria-hidden
-              className="absolute inset-0 bg-gradient-to-r from-forest-deep/90 via-forest-deep/70 to-forest-deep/30"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-forest-deep/40"
+              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-forest-deep/85 to-transparent"
             />
 
             <div className="relative grid grid-cols-1 lg:grid-cols-12 min-h-[calc(100svh-9rem)]">
@@ -109,7 +106,7 @@ function HomePage() {
                 <div className="p-6 md:p-8 flex justify-end">
                   <div className="px-4 py-2 bg-ivory/95 backdrop-blur-sm border border-line">
                     <span className="font-display italic text-[13px] tabular-nums text-forest-deep">
-                      3°52′N · 11°31′E
+                      Douala — Edéa · 3°48′N
                     </span>
                   </div>
                 </div>
@@ -231,7 +228,7 @@ function HomePage() {
                 className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-[1.02] transition-transform duration-1000"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/85 via-forest-deep/20 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-forest-deep/90 to-transparent" />
               <div className="relative flex justify-between text-ivory">
                 <span className="eyebrow opacity-80">01 · Flagship</span>
                 <span className="eyebrow opacity-80">Lot CM-CO-24</span>
@@ -398,7 +395,7 @@ function HomePage() {
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-forest-deep/95 via-forest-deep/85 to-forest-deep/70" />
+          <div className="absolute inset-0 bg-forest-deep/85" />
           <div className="relative px-8 md:px-16 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
               <span className="eyebrow text-gold mb-6 block">§ 05 — Begin a conversation</span>
@@ -460,7 +457,7 @@ function ProductTile({
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/85 via-transparent to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-forest-deep/90 to-transparent" />
       <div className="absolute inset-0 p-5 flex flex-col justify-between text-ivory">
         <div className="flex justify-between">
           <span className="eyebrow opacity-80">{code}</span>
