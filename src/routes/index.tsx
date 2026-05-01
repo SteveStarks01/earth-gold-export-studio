@@ -388,7 +388,7 @@ function HomePage() {
         </div>
         <div className="relative mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <span className="eyebrow text-gold mb-6 block">§ 03 — Export Readiness</span>
+            <span className="eyebrow text-gold mb-6 block">§ 04 — Export Readiness</span>
             <h2 className="font-display text-5xl md:text-6xl tracking-[-0.03em] leading-[0.95] text-balance">
               Built for the <span className="italic font-light">paperwork</span> as much as the
               produce.
@@ -431,7 +431,7 @@ function HomePage() {
         <div className="mx-auto max-w-[1400px]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
             <div className="lg:col-span-5">
-              <span className="eyebrow text-cocoa/70 mb-6 block">§ 04 — Commitment</span>
+              <span className="eyebrow text-cocoa/70 mb-6 block">§ 05 — Commitment</span>
               <h2 className="font-display text-5xl md:text-6xl tracking-[-0.03em] leading-[0.95] text-forest-deep">
                 Four words we <span className="italic font-light text-olive">defend</span>.
               </h2>
@@ -474,7 +474,7 @@ function HomePage() {
           <div className="absolute inset-0 bg-forest-deep/85" />
           <div className="relative px-8 md:px-16 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
-              <span className="eyebrow text-gold mb-6 block">§ 05 — Begin a conversation</span>
+              <span className="eyebrow text-gold mb-6 block">§ 06 — Begin a conversation</span>
               <h2 className="font-display text-5xl md:text-7xl tracking-[-0.03em] leading-[0.95] text-ivory text-balance">
                 Tell us what you need. <br />
                 <span className="italic font-light">We'll tell you what we can prove.</span>
