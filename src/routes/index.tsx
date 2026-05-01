@@ -310,6 +310,71 @@ function HomePage() {
         </div>
       </section>
 
+      {/* ───────────────────────── SECTORS — operational backbone ───────────────────────── */}
+      <section className="px-6 md:px-10 pb-28 md:pb-40">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="flex items-end justify-between border-b border-line pb-6 mb-12 gap-8 flex-wrap">
+            <div>
+              <span className="eyebrow text-cocoa/70 mb-3 block">§ 03 — The Operation</span>
+              <h2 className="font-display text-5xl md:text-6xl tracking-[-0.03em] text-forest-deep leading-[0.95]">
+                Beyond the crop. <span className="italic font-light text-olive">Four sectors.</span>
+              </h2>
+            </div>
+            <Link
+              to="/sectors"
+              className="hidden md:inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] font-semibold text-forest-deep group"
+            >
+              <span className="border-b border-forest-deep/40 group-hover:border-forest-deep pb-0.5">
+                Tour the operation
+              </span>
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line">
+            {SECTORS.map((s) => (
+              <Link
+                key={s.key}
+                to="/sectors"
+                className="bg-ivory group flex flex-col"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-forest-deep">
+                  <img
+                    src={SECTOR_IMAGES[s.key]}
+                    alt={s.name}
+                    width={1280}
+                    height={960}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-ivory/95 text-forest-deep">
+                    <span className="eyebrow">Sector {s.n}</span>
+                  </div>
+                </div>
+                <div className="p-8 md:p-10 flex flex-col gap-4">
+                  <h3 className="font-display text-3xl md:text-4xl tracking-[-0.02em] text-forest-deep leading-[1.05]">
+                    {s.name}
+                  </h3>
+                  <p className="text-sm md:text-base text-forest-deep/75 leading-[1.65] max-w-[48ch]">
+                    {s.summary}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="md:hidden mt-10 flex justify-end">
+            <Link
+              to="/sectors"
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] font-semibold text-forest-deep"
+            >
+              <span className="border-b border-forest-deep/40 pb-0.5">Tour the operation</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ───────────────────────── EXPORT READINESS ───────────────────────── */}
       <section className="bg-forest-deep text-ivory px-6 md:px-10 py-28 md:py-40 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.18]">
