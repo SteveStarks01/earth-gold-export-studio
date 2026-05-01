@@ -153,7 +153,7 @@ function ContactPage() {
               <address className="not-italic text-sm text-forest-deep/80 leading-relaxed">
                 Green Gold Agro Farm
                 <br />
-                Yaoundé · Douala
+                Douala — Edéa
                 <br />
                 Republic of Cameroon
               </address>

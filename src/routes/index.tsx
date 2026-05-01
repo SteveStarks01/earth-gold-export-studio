@@ -6,7 +6,18 @@ import textureCocoa from "@/assets/texture-cocoa.jpg";
 import producePineapple from "@/assets/produce-pineapple.jpg";
 import produceRoots from "@/assets/produce-roots.jpg";
 import landscapeMisty from "@/assets/landscape-misty.jpg";
-import { COMMITMENTS, EXPORT_FACTS, PRODUCTS } from "@/lib/content";
+import sectorLivestock from "@/assets/sector-livestock.jpg";
+import sectorFish from "@/assets/sector-fish.jpg";
+import sectorColdhouse from "@/assets/sector-coldhouse.jpg";
+import sectorPackaging from "@/assets/sector-packaging.jpg";
+import { COMMITMENTS, EXPORT_FACTS, PRODUCTS, SECTORS } from "@/lib/content";
+
+const SECTOR_IMAGES: Record<string, string> = {
+  livestock: sectorLivestock,
+  fish: sectorFish,
+  "cold-house": sectorColdhouse,
+  "package-house": sectorPackaging,
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,14 +55,11 @@ function HomePage() {
               height={1280}
               className="absolute inset-0 w-full h-full object-cover"
             />
-            {/* Readability scrim — layered for premium depth, not flat black */}
+            {/* Single editorial scrim — readability without the AI-slop multi-stop look */}
+            <div aria-hidden className="absolute inset-0 bg-forest-deep/55" />
             <div
               aria-hidden
-              className="absolute inset-0 bg-gradient-to-r from-forest-deep/90 via-forest-deep/70 to-forest-deep/30"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-forest-deep/40"
+              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-forest-deep/85 to-transparent"
             />
 
             <div className="relative grid grid-cols-1 lg:grid-cols-12 min-h-[calc(100svh-9rem)]">
@@ -109,7 +117,7 @@ function HomePage() {
                 <div className="p-6 md:p-8 flex justify-end">
                   <div className="px-4 py-2 bg-ivory/95 backdrop-blur-sm border border-line">
                     <span className="font-display italic text-[13px] tabular-nums text-forest-deep">
-                      3°52′N · 11°31′E
+                      Douala — Edéa · 3°48′N
                     </span>
                   </div>
                 </div>
@@ -231,7 +239,7 @@ function HomePage() {
                 className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-[1.02] transition-transform duration-1000"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/85 via-forest-deep/20 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-forest-deep/90 to-transparent" />
               <div className="relative flex justify-between text-ivory">
                 <span className="eyebrow opacity-80">01 · Flagship</span>
                 <span className="eyebrow opacity-80">Lot CM-CO-24</span>
@@ -302,6 +310,71 @@ function HomePage() {
         </div>
       </section>
 
+      {/* ───────────────────────── SECTORS — operational backbone ───────────────────────── */}
+      <section className="px-6 md:px-10 pb-28 md:pb-40">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="flex items-end justify-between border-b border-line pb-6 mb-12 gap-8 flex-wrap">
+            <div>
+              <span className="eyebrow text-cocoa/70 mb-3 block">§ 03 — The Operation</span>
+              <h2 className="font-display text-5xl md:text-6xl tracking-[-0.03em] text-forest-deep leading-[0.95]">
+                Beyond the crop. <span className="italic font-light text-olive">Four sectors.</span>
+              </h2>
+            </div>
+            <Link
+              to="/sectors"
+              className="hidden md:inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] font-semibold text-forest-deep group"
+            >
+              <span className="border-b border-forest-deep/40 group-hover:border-forest-deep pb-0.5">
+                Tour the operation
+              </span>
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line">
+            {SECTORS.map((s) => (
+              <Link
+                key={s.key}
+                to="/sectors"
+                className="bg-ivory group flex flex-col"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-forest-deep">
+                  <img
+                    src={SECTOR_IMAGES[s.key]}
+                    alt={s.name}
+                    width={1280}
+                    height={960}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-ivory/95 text-forest-deep">
+                    <span className="eyebrow">Sector {s.n}</span>
+                  </div>
+                </div>
+                <div className="p-8 md:p-10 flex flex-col gap-4">
+                  <h3 className="font-display text-3xl md:text-4xl tracking-[-0.02em] text-forest-deep leading-[1.05]">
+                    {s.name}
+                  </h3>
+                  <p className="text-sm md:text-base text-forest-deep/75 leading-[1.65] max-w-[48ch]">
+                    {s.summary}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="md:hidden mt-10 flex justify-end">
+            <Link
+              to="/sectors"
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] font-semibold text-forest-deep"
+            >
+              <span className="border-b border-forest-deep/40 pb-0.5">Tour the operation</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ───────────────────────── EXPORT READINESS ───────────────────────── */}
       <section className="bg-forest-deep text-ivory px-6 md:px-10 py-28 md:py-40 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.18]">
@@ -315,7 +388,7 @@ function HomePage() {
         </div>
         <div className="relative mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <span className="eyebrow text-gold mb-6 block">§ 03 — Export Readiness</span>
+            <span className="eyebrow text-gold mb-6 block">§ 04 — Export Readiness</span>
             <h2 className="font-display text-5xl md:text-6xl tracking-[-0.03em] leading-[0.95] text-balance">
               Built for the <span className="italic font-light">paperwork</span> as much as the
               produce.
@@ -358,7 +431,7 @@ function HomePage() {
         <div className="mx-auto max-w-[1400px]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
             <div className="lg:col-span-5">
-              <span className="eyebrow text-cocoa/70 mb-6 block">§ 04 — Commitment</span>
+              <span className="eyebrow text-cocoa/70 mb-6 block">§ 05 — Commitment</span>
               <h2 className="font-display text-5xl md:text-6xl tracking-[-0.03em] leading-[0.95] text-forest-deep">
                 Four words we <span className="italic font-light text-olive">defend</span>.
               </h2>
@@ -398,10 +471,10 @@ function HomePage() {
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-forest-deep/95 via-forest-deep/85 to-forest-deep/70" />
+          <div className="absolute inset-0 bg-forest-deep/85" />
           <div className="relative px-8 md:px-16 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
-              <span className="eyebrow text-gold mb-6 block">§ 05 — Begin a conversation</span>
+              <span className="eyebrow text-gold mb-6 block">§ 06 — Begin a conversation</span>
               <h2 className="font-display text-5xl md:text-7xl tracking-[-0.03em] leading-[0.95] text-ivory text-balance">
                 Tell us what you need. <br />
                 <span className="italic font-light">We'll tell you what we can prove.</span>
@@ -460,7 +533,7 @@ function ProductTile({
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/85 via-transparent to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-forest-deep/90 to-transparent" />
       <div className="absolute inset-0 p-5 flex flex-col justify-between text-ivory">
         <div className="flex justify-between">
           <span className="eyebrow opacity-80">{code}</span>
