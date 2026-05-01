@@ -41,7 +41,7 @@ export function SiteFooter() {
           <span className="eyebrow text-cocoa/60 mb-5 block">Contact</span>
           <address className="not-italic text-sm text-forest-deep/80 leading-relaxed space-y-3">
             <p>
-              Yaoundé · Douala
+              Douala — Edéa
               <br />
               Republic of Cameroon
             </p>

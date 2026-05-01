@@ -89,7 +89,7 @@ function AboutPage() {
         <div className="mx-auto max-w-[1400px]">
           <ol className="border-t border-line">
             {[
-              { k: "Headquarters", v: "Yaoundé · Douala" },
+              { k: "Headquarters", v: "Douala — Edéa, Cameroon" },
               { k: "Regions of operation", v: "Centre · South · West · North-West" },
               { k: "Languages of business", v: "Français · English" },
               { k: "Outbound port", v: "Port Autonome de Douala" },
