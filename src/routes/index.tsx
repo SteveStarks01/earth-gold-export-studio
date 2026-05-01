@@ -6,7 +6,18 @@ import textureCocoa from "@/assets/texture-cocoa.jpg";
 import producePineapple from "@/assets/produce-pineapple.jpg";
 import produceRoots from "@/assets/produce-roots.jpg";
 import landscapeMisty from "@/assets/landscape-misty.jpg";
-import { COMMITMENTS, EXPORT_FACTS, PRODUCTS } from "@/lib/content";
+import sectorLivestock from "@/assets/sector-livestock.jpg";
+import sectorFish from "@/assets/sector-fish.jpg";
+import sectorColdhouse from "@/assets/sector-coldhouse.jpg";
+import sectorPackaging from "@/assets/sector-packaging.jpg";
+import { COMMITMENTS, EXPORT_FACTS, PRODUCTS, SECTORS } from "@/lib/content";
+
+const SECTOR_IMAGES: Record<string, string> = {
+  livestock: sectorLivestock,
+  fish: sectorFish,
+  "cold-house": sectorColdhouse,
+  "package-house": sectorPackaging,
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
