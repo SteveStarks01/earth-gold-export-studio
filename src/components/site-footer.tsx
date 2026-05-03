@@ -17,29 +17,28 @@ export function SiteFooter() {
   const t = useT();
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-line bg-ivory">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-20 grid grid-cols-1 md:grid-cols-12 gap-12">
+    <footer className="bg-slate-900 text-white pt-24 pb-12">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
         <div className="md:col-span-5">
-          <span className="eyebrow text-cocoa/70 mb-3 block">{t("brand.tagline")}</span>
-          <h3 className="font-display text-5xl md:text-6xl tracking-[-0.03em] text-forest-deep leading-[0.95] mb-8">
-            {t("footer.title.a")} <br />
-            <span className="italic font-light text-olive">{t("footer.title.b")}</span>
-          </h3>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-3 text-sm text-forest-deep group"
-          >
-            <span className="border-b border-forest-deep pb-1">{t("footer.cta")}</span>
-            <span className="transition-transform group-hover:translate-x-1">→</span>
+          <Link to="/" className="flex items-center gap-2 mb-6">
+            <div className="w-10 h-10 rounded-full bg-forest flex items-center justify-center text-white font-bold text-xl leading-none">
+              {BRAND.name.charAt(0)}
+            </div>
+            <span className="font-display text-2xl font-bold text-white">
+              {BRAND.name}
+            </span>
           </Link>
+          <p className="text-slate-400 max-w-sm mb-8 leading-relaxed">
+            {t("brand.tagline")}. {t("footer.title.a")} {t("footer.title.b")}
+          </p>
         </div>
 
         <div className="md:col-span-3 md:col-start-7">
-          <span className="eyebrow text-cocoa/60 mb-5 block">{t("footer.navigate")}</span>
-          <ul className="space-y-2.5">
+          <h4 className="font-bold text-lg mb-6">{t("footer.navigate")}</h4>
+          <ul className="space-y-3">
             {NAV.map((item) => (
               <li key={item.to}>
-                <Link to={item.to} className="text-sm text-forest-deep/80 hover:text-forest-deep">
+                <Link to={item.to} className="text-slate-400 hover:text-forest transition-colors">
                   {t(NAV_KEY[item.to] ?? "nav.home")}
                 </Link>
               </li>
@@ -48,19 +47,18 @@ export function SiteFooter() {
         </div>
 
         <div className="md:col-span-3">
-          <span className="eyebrow text-cocoa/60 mb-5 block">{t("footer.contact")}</span>
-          <address className="not-italic text-sm text-forest-deep/80 leading-relaxed space-y-3">
+          <h4 className="font-bold text-lg mb-6">{t("footer.contact")}</h4>
+          <address className="not-italic text-slate-400 space-y-4">
             <p>
               {t("location.douala-edea")}
               <br />
               {t("contact.aside.country")}
             </p>
-            <p>
-              <a href="mailto:trade@greengoldagro.cm" className="hover:text-forest-deep">
+            <p className="flex flex-col gap-2">
+              <a href="mailto:trade@greengoldagro.cm" className="hover:text-forest transition-colors">
                 trade@greengoldagro.cm
               </a>
-              <br />
-              <a href="tel:+237000000000" className="hover:text-forest-deep tabular-nums">
+              <a href="tel:+237000000000" className="hover:text-forest transition-colors tabular-nums">
                 +237 000 000 000
               </a>
             </p>
@@ -68,12 +66,12 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-line">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[11px] uppercase tracking-[0.22em] text-cocoa/60">
-          <span>
-            © {year} {BRAND.fullName} — {t("footer.legal")}
-          </span>
-          <span className="tabular-nums">{t("footer.tag")}</span>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+          <p>
+            © {year} {BRAND.fullName}. {t("footer.legal")}
+          </p>
+          <p>{t("footer.tag")}</p>
         </div>
       </div>
     </footer>

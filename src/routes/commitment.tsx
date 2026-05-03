@@ -37,55 +37,56 @@ function CommitmentPage() {
   const t = useT();
   return (
     <>
-      <section className="relative px-6 md:px-10 pt-20 md:pt-28 pb-24 overflow-hidden">
-        <FloatingLeaves count={9} tone="text-olive" opacity={0.22} />
-        <div className="relative mx-auto max-w-[1400px]">
-          <span className="eyebrow text-cocoa/70 mb-8 block">{t("commitment.eyebrow")}</span>
-          <h1 className="font-display text-[clamp(2.75rem,7vw,7rem)] leading-[0.9] tracking-[-0.035em] text-forest-deep max-w-[14ch]">
+      <section className="relative px-6 lg:px-8 pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-slate-50">
+        <div className="relative mx-auto max-w-7xl">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-forest/10 text-forest font-bold text-sm mb-6 uppercase tracking-wider">{t("commitment.eyebrow")}</span>
+          <h1 className="font-display text-5xl md:text-7xl font-bold text-slate-900 max-w-4xl leading-tight">
             {t("commitment.title.a")}{" "}
-            <span className="italic font-light text-olive">{t("commitment.title.defend")}</span>
+            <span className="text-forest">{t("commitment.title.defend")}</span>
             {t("commitment.title.suffix")}
           </h1>
-          <p className="mt-10 max-w-[48ch] text-base md:text-lg leading-[1.7] text-forest-deep/75">
+          <p className="mt-8 max-w-2xl text-lg text-slate-600 leading-relaxed">
             {t("commitment.lede")}
           </p>
         </div>
       </section>
 
-      <section className="px-6 md:px-10 pb-12">
-        <div className="mx-auto max-w-[1400px]">
-          <ol className="border-t border-line">
+      <section className="px-6 lg:px-8 pb-32 bg-slate-50">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {COMMITMENTS.map((c, i) => (
               <LeafReveal
                 key={c.word}
-                className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 py-14 border-b border-line group"
+                className="bg-white p-12 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-lg transition-all group flex flex-col justify-between"
               >
-                <span
-                  data-leaf-stagger
-                  className="md:col-span-1 font-display italic text-gold text-2xl"
-                >
-                  {c.n}
-                </span>
-                <h2
-                  data-leaf-stagger
-                  className="md:col-span-4 font-display text-5xl md:text-6xl tracking-[-0.03em] text-forest-deep leading-none group-hover:italic transition-all"
-                >
-                  {t(C_KEYS[i][0] as TranslationKey)}
-                </h2>
+                <div>
+                  <div
+                    data-leaf-stagger
+                    className="w-16 h-16 bg-forest/10 rounded-2xl flex items-center justify-center text-forest font-display text-3xl font-bold mb-8 group-hover:bg-forest group-hover:text-white transition-colors"
+                  >
+                    {c.n}
+                  </div>
+                  <h2
+                    data-leaf-stagger
+                    className="font-display text-4xl font-bold text-slate-900 leading-tight mb-6"
+                  >
+                    {t(C_KEYS[i][0] as TranslationKey)}
+                  </h2>
+                </div>
                 <p
                   data-leaf-stagger
-                  className="md:col-span-7 text-base md:text-lg leading-[1.7] text-forest-deep/75 max-w-[55ch] self-center"
+                  className="text-lg text-slate-600 leading-relaxed font-medium"
                 >
                   {t(C_KEYS[i][1] as TranslationKey)}
                 </p>
               </LeafReveal>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
-      <section className="px-6 md:px-10 py-28 relative overflow-hidden">
-        <div className="mx-auto max-w-[1400px] relative overflow-hidden border border-line">
+      <section className="px-6 lg:px-8 pb-24">
+        <div className="mx-auto max-w-7xl relative overflow-hidden rounded-[3rem] shadow-2xl">
           <img
             src={textureCocoa}
             alt=""
@@ -93,18 +94,17 @@ function CommitmentPage() {
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-forest-deep/85" />
-          <FloatingLeaves count={7} tone="text-gold" opacity={0.3} />
-          <div className="relative px-8 md:px-16 py-24 md:py-28 max-w-3xl">
-            <h2 className="font-display text-4xl md:text-5xl tracking-[-0.025em] leading-[1] text-ivory text-balance">
+          <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" />
+          <div className="relative px-8 md:px-16 py-24 md:py-32 max-w-3xl text-center mx-auto flex flex-col items-center">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
               {t("commitment.cta.title")}
             </h2>
-            <p className="mt-6 text-lg text-ivory/80 leading-relaxed max-w-[42ch]">
+            <p className="text-lg text-white/80 leading-relaxed max-w-xl mb-10">
               {t("commitment.cta.lede")}
             </p>
             <Link
               to="/contact"
-              className="mt-10 inline-flex px-9 py-4 bg-ivory text-forest-deep text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-gold hover:text-ivory transition-colors"
+              className="px-10 py-5 bg-forest text-white font-bold rounded-full hover:bg-forest/90 transition-all shadow-lg shadow-forest/20"
             >
               {t("commitment.cta.btn")}
             </Link>

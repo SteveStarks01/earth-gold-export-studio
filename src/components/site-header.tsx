@@ -36,28 +36,29 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-colors duration-300 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-ivory/85 backdrop-blur-md border-b border-line"
-          : "bg-transparent border-b border-transparent"
+          ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-line py-3"
+          : "bg-transparent border-b border-transparent py-5"
       }`}
     >
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-5 flex items-end justify-between gap-8">
-        <Link to="/" className="flex flex-col leading-none group">
-          <span className="eyebrow text-cocoa/70 mb-1.5">{t("brand.tagline")}</span>
-          <span className="font-display text-[1.65rem] font-semibold tracking-[-0.03em] text-forest-deep group-hover:text-forest transition-colors">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2 group">
+          <div className="w-10 h-10 rounded-full bg-forest flex items-center justify-center text-white font-bold text-xl leading-none">
+            {BRAND.name.charAt(0)}
+          </div>
+          <span className="font-display text-xl font-bold text-forest-deep group-hover:text-forest transition-colors">
             {BRAND.name}
-            <span className="text-gold">.</span>
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8 bg-white/80 backdrop-blur-sm px-8 py-3 rounded-full border border-line/50 shadow-sm">
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="text-[11px] uppercase tracking-[0.2em] font-medium text-forest-deep/75 hover:text-forest-deep transition-colors"
-              activeProps={{ className: "text-forest-deep !font-semibold" }}
+              className="text-sm font-semibold text-slate-600 hover:text-forest transition-colors"
+              activeProps={{ className: "text-forest" }}
               activeOptions={{ exact: item.to === "/" }}
             >
               {t(NAV_KEY[item.to] ?? "nav.home")}
@@ -65,11 +66,11 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-4">
           <LanguageSelector />
           <Link
             to="/contact"
-            className="px-5 py-2.5 bg-forest text-ivory text-[11px] uppercase tracking-[0.2em] font-semibold hover:bg-forest-deep transition-colors"
+            className="px-6 py-2.5 bg-forest text-white text-sm font-semibold rounded-full hover:bg-forest/90 transition-colors shadow-sm hover:shadow"
           >
             {t("nav.cta")}
           </Link>
@@ -80,48 +81,49 @@ export function SiteHeader() {
           aria-label={t("nav.openMenu")}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="lg:hidden flex flex-col gap-[5px] p-2 -mr-2"
+          className="lg:hidden flex flex-col gap-[5px] p-2"
         >
           <span
-            className={`block h-px w-6 bg-forest-deep transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`}
+            className={`block h-0.5 w-6 bg-forest-deep transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`}
           />
           <span
-            className={`block h-px w-6 bg-forest-deep transition-opacity ${open ? "opacity-0" : ""}`}
+            className={`block h-0.5 w-6 bg-forest-deep transition-opacity ${open ? "opacity-0" : ""}`}
           />
           <span
-            className={`block h-px w-6 bg-forest-deep transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`}
+            className={`block h-0.5 w-6 bg-forest-deep transition-transform ${open ? "-translate-y-[7px] -rotate-45" : ""}`}
           />
         </button>
       </div>
 
       {/* Mobile sheet */}
       <div
-        className={`lg:hidden fixed inset-0 top-[73px] bg-ivory transition-opacity duration-300 overflow-y-auto ${
+        className={`lg:hidden fixed inset-0 top-[73px] bg-white transition-opacity duration-300 overflow-y-auto ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <nav className="flex flex-col px-6 py-10 gap-1">
-          {NAV.map((item, i) => (
+        <nav className="flex flex-col px-6 py-8 gap-2">
+          {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="font-display text-4xl tracking-[-0.02em] text-forest-deep py-3 border-b border-line flex items-baseline justify-between"
+              className="font-display text-2xl font-bold text-forest-deep py-4 border-b border-line"
             >
-              <span>{t(NAV_KEY[item.to] ?? "nav.home")}</span>
-              <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-cocoa/50">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              {t(NAV_KEY[item.to] ?? "nav.home")}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            onClick={() => setOpen(false)}
-            className="mt-10 px-6 py-5 bg-forest text-ivory text-xs uppercase tracking-[0.25em] font-semibold text-center"
-          >
-            {t("nav.cta")}
-          </Link>
-          <LanguageSelector variant="mobile" />
+          <div className="mt-8 flex flex-col gap-4">
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className="w-full py-4 bg-forest text-white text-sm font-bold rounded-full text-center"
+            >
+              {t("nav.cta")}
+            </Link>
+            <div className="flex justify-center">
+               <LanguageSelector variant="mobile" />
+            </div>
+          </div>
         </nav>
       </div>
     </header>
