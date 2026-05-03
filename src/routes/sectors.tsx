@@ -41,94 +41,94 @@ function SectorsPage() {
   const t = useT();
   return (
     <>
-      <section className="relative px-6 md:px-10 pt-20 md:pt-28 pb-20 overflow-hidden">
-        <FloatingLeaves count={9} tone="text-olive" opacity={0.25} />
-        <div className="relative mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+      <section className="relative px-6 lg:px-8 pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-white">
+        <div className="relative mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
           <div className="lg:col-span-8">
-            <span className="eyebrow text-cocoa/70 mb-8 block">{t("sectors.eyebrow")}</span>
-            <h1 className="font-display text-[clamp(2.75rem,7vw,7rem)] leading-[0.9] tracking-[-0.035em] text-forest-deep">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-forest/10 text-forest font-bold text-sm mb-6 uppercase tracking-wider">{t("sectors.eyebrow")}</span>
+            <h1 className="font-display text-5xl md:text-7xl font-bold text-slate-900 leading-tight">
               {t("sectors.title.a")} <br />
-              <span className="italic font-light text-olive">{t("sectors.title.b")}</span>
+              <span className="text-forest">{t("sectors.title.b")}</span>
             </h1>
           </div>
-          <p className="lg:col-span-4 text-base leading-[1.7] text-forest-deep/75">
+          <p className="lg:col-span-4 text-lg text-slate-600 leading-relaxed font-medium">
             {t("sectors.lede")}
           </p>
         </div>
       </section>
 
-      <section className="px-6 md:px-10 pb-24 space-y-px bg-line">
-        {SECTORS.map((s, i) => (
-          <LeafReveal
-            key={s.key}
-            className={`bg-ivory grid grid-cols-1 lg:grid-cols-12 gap-0 ${
-              i % 2 === 1 ? "lg:[&>.media]:order-2" : ""
-            }`}
-          >
-            <div
-              data-leaf-stagger
-              className="media lg:col-span-6 relative aspect-[4/3] lg:aspect-auto lg:min-h-[560px] overflow-hidden bg-forest-deep"
+      <section className="px-6 lg:px-8 pb-32 bg-white">
+        <div className="mx-auto max-w-7xl space-y-16">
+          {SECTORS.map((s, i) => (
+            <LeafReveal
+              key={s.key}
+              className={`bg-slate-50 rounded-[2.5rem] grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden shadow-sm border border-slate-100 ${
+                i % 2 === 1 ? "lg:[&>.media]:order-2" : ""
+              }`}
             >
-              <img
-                src={IMAGES[s.key]}
-                alt={t(`sector.${s.key}.name` as TranslationKey)}
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-                width={1280}
-                height={960}
-              />
-            </div>
-            <div className="lg:col-span-6 p-10 md:p-16 flex flex-col justify-between gap-12">
-              <div data-leaf-stagger>
-                <span className="eyebrow text-gold mb-6 block">
-                  {t("sectors.label")} {s.n}
-                </span>
-                <h2 className="font-display text-4xl md:text-6xl tracking-[-0.025em] leading-[0.95] text-forest-deep mb-6">
-                  {t(`sector.${s.key}.name` as TranslationKey)}
-                </h2>
-                <p className="font-display text-xl md:text-2xl leading-[1.4] tracking-[-0.01em] text-forest-deep mb-6">
-                  {t(`sector.${s.key}.summary` as TranslationKey)}
-                </p>
-                <p className="text-base leading-[1.7] text-forest-deep/75 max-w-[52ch]">
-                  {t(`sector.${s.key}.body` as TranslationKey)}
-                </p>
-              </div>
-              <dl
+              <div
                 data-leaf-stagger
-                className="grid grid-cols-3 gap-6 pt-8 border-t border-line"
+                className="media lg:col-span-6 relative aspect-[4/3] lg:aspect-auto lg:min-h-[560px] overflow-hidden"
               >
-                {[1, 2, 3].map((n) => (
-                  <div key={n}>
-                    <dt className="eyebrow text-cocoa/60 mb-1.5">
-                      {t(`sector.${s.key}.f${n}.k` as TranslationKey)}
-                    </dt>
-                    <dd className="font-display text-base md:text-lg text-forest-deep tracking-[-0.01em] leading-tight">
-                      {t(`sector.${s.key}.f${n}.v` as TranslationKey)}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </LeafReveal>
-        ))}
+                <img
+                  src={IMAGES[s.key]}
+                  alt={t(`sector.${s.key}.name` as TranslationKey)}
+                  className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                  loading="lazy"
+                  width={1280}
+                  height={960}
+                />
+              </div>
+              <div className="lg:col-span-6 p-10 md:p-16 flex flex-col justify-between gap-12">
+                <div data-leaf-stagger>
+                  <span className="inline-block py-1 px-3 rounded-full bg-white text-forest font-bold text-xs mb-6 shadow-sm uppercase tracking-wider">
+                    {t("sectors.label")} {s.n}
+                  </span>
+                  <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
+                    {t(`sector.${s.key}.name` as TranslationKey)}
+                  </h2>
+                  <p className="text-xl font-bold text-slate-700 leading-snug mb-6">
+                    {t(`sector.${s.key}.summary` as TranslationKey)}
+                  </p>
+                  <p className="text-slate-600 leading-relaxed max-w-xl">
+                    {t(`sector.${s.key}.body` as TranslationKey)}
+                  </p>
+                </div>
+                <dl
+                  data-leaf-stagger
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-slate-200"
+                >
+                  {[1, 2, 3].map((n) => (
+                    <div key={n}>
+                      <dt className="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2">
+                        {t(`sector.${s.key}.f${n}.k` as TranslationKey)}
+                      </dt>
+                      <dd className="font-display text-lg font-bold text-slate-900">
+                        {t(`sector.${s.key}.f${n}.v` as TranslationKey)}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </LeafReveal>
+          ))}
+        </div>
       </section>
 
-      <GrassDivider tone="text-ivory-warm" />
-      <section className="bg-ivory-warm px-6 md:px-10 py-24">
-        <div className="mx-auto max-w-[1400px] flex flex-wrap items-end justify-between gap-8 border-t border-line pt-12">
-          <h2 className="font-display text-3xl md:text-5xl tracking-[-0.025em] text-forest-deep leading-[1] max-w-[24ch]">
+      <section className="bg-slate-50 px-6 lg:px-8 py-32 rounded-t-[3rem] mt-[-3rem] relative z-10">
+        <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 leading-tight max-w-2xl">
             {t("sectors.foot.title")}
           </h2>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
             <Link
               to="/contact"
-              className="px-9 py-4 bg-forest text-ivory text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-forest-deep transition-colors"
+              className="w-full sm:w-auto px-8 py-4 bg-forest text-white font-bold rounded-full hover:bg-forest/90 transition-all shadow-lg shadow-forest/20 flex justify-center items-center"
             >
               {t("sectors.cta.visit")}
             </Link>
             <Link
               to="/products"
-              className="px-9 py-4 border border-forest-deep/20 text-forest-deep text-[11px] uppercase tracking-[0.25em] font-semibold hover:border-forest-deep transition-colors"
+              className="w-full sm:w-auto px-8 py-4 bg-white text-slate-800 font-bold rounded-full border border-slate-200 hover:border-forest hover:text-forest transition-all shadow-sm flex justify-center items-center"
             >
               {t("sectors.cta.catalogue")}
             </Link>

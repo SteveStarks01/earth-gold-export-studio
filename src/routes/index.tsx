@@ -69,111 +69,45 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="px-6 md:px-10 pt-6 md:pt-8">
-        <div className="mx-auto max-w-[1400px] border border-line">
-          <div className="relative min-h-[calc(100svh-9rem)] overflow-hidden bg-forest-deep grain">
-            <img
-              src={heroCocoa}
-              alt="Cocoa pods ripening on a Cameroonian plantation at first light"
-              width={1920}
-              height={1280}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div aria-hidden className="absolute inset-0 bg-forest-deep/55" />
-            <div
-              aria-hidden
-              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-forest-deep/85 to-transparent"
-            />
-            <FloatingLeaves count={11} tone="text-gold" opacity={0.45} />
-
-            <div className="relative grid grid-cols-1 lg:grid-cols-12 min-h-[calc(100svh-9rem)]">
-              <div className="lg:col-span-8 p-8 md:p-14 lg:p-16 flex flex-col justify-between text-ivory">
-                <div>
-                  <div className="reveal inline-flex items-center gap-3 px-3 py-1.5 border border-ivory/25 backdrop-blur-[2px] bg-forest-deep/20">
-                    <span className="size-1.5 rounded-full bg-gold" aria-hidden />
-                    <span className="text-[10px] uppercase tracking-[0.3em] font-medium text-ivory/85">
-                      {t("hero.badge")}
-                    </span>
-                  </div>
-
-                  <h1 className="reveal reveal-delay-1 font-display mt-10 text-[clamp(2.75rem,7vw,7rem)] leading-[0.92] tracking-[-0.035em] text-ivory text-balance [text-shadow:0_2px_30px_rgb(0_0_0_/_0.25)]">
-                    {t("hero.title.l1")} <br />
-                    {t("hero.title.l2.with")}{" "}
-                    <span className="italic font-light text-gold">
-                      {t("hero.title.l2.intent")}
-                    </span>
-                    <br />
-                    {t("hero.title.l3")}
-                  </h1>
-
-                  <p className="reveal reveal-delay-2 mt-10 max-w-[48ch] text-base md:text-lg leading-[1.65] text-ivory/85 text-pretty">
-                    {t("hero.lede")}
-                  </p>
-                </div>
-
-                <div className="reveal reveal-delay-3 mt-16 flex flex-col sm:flex-row sm:items-end gap-8 sm:gap-10">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Link
-                      to="/contact"
-                      className="px-9 py-4 bg-ivory text-forest-deep text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-gold hover:text-ivory transition-colors"
-                    >
-                      {t("hero.cta.partner")}
-                    </Link>
-                    <Link
-                      to="/products"
-                      className="px-9 py-4 text-[11px] uppercase tracking-[0.25em] font-semibold text-ivory border border-ivory/40 hover:border-ivory hover:bg-ivory/10 transition-colors"
-                    >
-                      {t("hero.cta.quote")}
-                    </Link>
-                  </div>
-                  <div className="flex flex-col sm:ml-auto">
-                    <span className="eyebrow text-gold mb-1.5">{t("hero.season.label")}</span>
-                    <span className="font-display text-xl italic text-ivory">
-                      {t("hero.season.value")}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-4 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-ivory/15">
-                <div className="p-6 md:p-8 flex justify-end">
-                  <div className="px-4 py-2 bg-ivory/95 backdrop-blur-sm border border-line">
-                    <span className="font-display italic text-[13px] tabular-nums text-forest-deep">
-                      {t("location.douala-edea")} · 3°48′N
-                    </span>
-                  </div>
-                </div>
-
-                <dl className="grid grid-cols-2 border-t border-ivory/15">
-                  <div className="p-6 md:p-8 border-r border-ivory/15">
-                    <dt className="eyebrow text-ivory/55 mb-2">{t("hero.stat.crops")}</dt>
-                    <dd className="font-display text-3xl md:text-4xl tabular-nums text-ivory">
-                      11
-                    </dd>
-                  </div>
-                  <div className="p-6 md:p-8">
-                    <dt className="eyebrow text-ivory/55 mb-2">{t("hero.stat.port")}</dt>
-                    <dd className="font-display text-3xl md:text-4xl text-ivory">Douala</dd>
-                  </div>
-                </dl>
+      <section className="relative px-6 lg:px-8 pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-white">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 relative z-10">
+              <span className="inline-block py-1.5 px-4 rounded-full bg-forest/10 text-forest font-bold text-sm mb-6 uppercase tracking-wider">
+                {t("hero.eyebrow")}
+              </span>
+              <h1 className="font-display text-5xl md:text-7xl font-bold text-slate-900 leading-tight mb-8">
+                {t("hero.title.a")} <span className="text-forest">{t("hero.title.b")}</span>. <br/>
+                <span className="text-slate-500">{t("hero.title.c")}</span>
+              </h1>
+              <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl leading-relaxed">
+                {t("hero.lede")}
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  to="/products"
+                  className="px-8 py-4 bg-forest text-white font-bold rounded-full hover:bg-forest/90 transition-all shadow-lg shadow-forest/20 flex items-center gap-2"
+                >
+                  {t("hero.cta.products")}
+                  <span>→</span>
+                </Link>
+                <Link
+                  to="/contact"
+                  className="px-8 py-4 bg-white text-forest font-bold rounded-full border border-forest/20 hover:border-forest hover:bg-forest/5 transition-all flex items-center gap-2"
+                >
+                  {t("hero.cta.partner")}
+                </Link>
               </div>
             </div>
-            {/* grass silhouette anchored to hero floor */}
-            <GrassDivider tone="text-ivory" className="absolute inset-x-0 bottom-0" height={48} />
-          </div>
-
-          {/* sub-facts strip */}
-          <div className="grid grid-cols-1 md:grid-cols-3 border-t border-line">
-            {facts.map((f) => (
-              <div
-                key={f.n}
-                className="p-8 md:p-10 border-b md:border-b-0 md:border-r last:border-r-0 border-line"
-              >
-                <span className="font-display italic text-gold text-lg block mb-4">{f.n}</span>
-                <h3 className="eyebrow text-forest-deep mb-3">{f.title}</h3>
-                <p className="text-sm leading-relaxed text-forest-deep/70">{f.body}</p>
+            <div className="lg:col-span-5 relative">
+              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
+                 <img
+                  src={heroCocoa}
+                  alt="Cocoa pods ripening"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -305,124 +239,91 @@ function HomePage() {
       </section>
 
       {/* SECTORS */}
-      <section className="px-6 md:px-10 pb-28 md:pb-40">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="flex items-end justify-between border-b border-line pb-6 mb-12 gap-8 flex-wrap">
-            <div>
-              <span className="eyebrow text-cocoa/70 mb-3 block">{t("home.s03.eyebrow")}</span>
-              <h2 className="font-display text-5xl md:text-6xl tracking-[-0.03em] text-forest-deep leading-[0.95]">
-                {t("home.s03.title.a")}{" "}
-                <span className="italic font-light text-olive">{t("home.s03.title.b")}</span>
+      <section className="px-6 lg:px-8 py-24 md:py-32 bg-slate-50 rounded-3xl mx-4 lg:mx-8 mb-24 shadow-sm border border-slate-100">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+            <div className="max-w-xl">
+              <span className="eyebrow block mb-4">{t("home.s03.eyebrow")}</span>
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+                {t("home.s03.title")}
               </h2>
             </div>
             <Link
               to="/sectors"
-              className="hidden md:inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] font-semibold text-forest-deep group"
+              className="inline-flex items-center gap-2 text-forest font-bold hover:text-forest-deep transition-colors bg-white px-6 py-3 rounded-full shadow-sm border border-slate-100"
             >
-              <span className="border-b border-forest-deep/40 group-hover:border-forest-deep pb-0.5">
-                {t("home.s03.cta")}
-              </span>
-              <span className="transition-transform group-hover:translate-x-1">→</span>
+              <span>{t("home.s03.cta")}</span>
+              <span>→</span>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {SECTORS.map((s) => (
-              <Link key={s.key} to="/sectors" className="bg-ivory group flex flex-col">
-                <div className="relative aspect-[16/10] overflow-hidden bg-forest-deep">
+              <Link key={s.key} to="/sectors" className="bg-white rounded-3xl overflow-hidden group shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col">
+                <div className="relative aspect-[16/10] overflow-hidden">
                   <img
                     src={SECTOR_IMAGES[s.key]}
-                    alt={t(`sector.${s.key}.name` as TranslationKey)}
-                    width={1280}
-                    height={960}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    alt={t(`sector.${s.key}.name`)}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-ivory/95 text-forest-deep">
-                    <span className="eyebrow">
-                      {t("sectors.label")} {s.n}
-                    </span>
+                  <div className="absolute top-4 left-4 px-4 py-1.5 bg-white/90 backdrop-blur-sm text-forest-deep rounded-full text-xs font-bold uppercase tracking-wider">
+                    {t("sectors.label")} {s.n}
                   </div>
                 </div>
-                <div className="p-8 md:p-10 flex flex-col gap-4">
-                  <h3 className="font-display text-3xl md:text-4xl tracking-[-0.02em] text-forest-deep leading-[1.05]">
-                    {t(`sector.${s.key}.name` as TranslationKey)}
+                <div className="p-8 flex flex-col gap-4">
+                  <h3 className="font-display text-2xl font-bold text-slate-900">
+                    {t(`sector.${s.key}.name`)}
                   </h3>
-                  <p className="text-sm md:text-base text-forest-deep/75 leading-[1.65] max-w-[48ch]">
-                    {t(`sector.${s.key}.summary` as TranslationKey)}
+                  <p className="text-slate-600 leading-relaxed">
+                    {t(`sector.${s.key}.summary`)}
                   </p>
                 </div>
               </Link>
             ))}
           </div>
-
-          <div className="md:hidden mt-10 flex justify-end">
-            <Link
-              to="/sectors"
-              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] font-semibold text-forest-deep"
-            >
-              <span className="border-b border-forest-deep/40 pb-0.5">{t("home.s03.cta")}</span>
-              <span>→</span>
-            </Link>
-          </div>
         </div>
       </section>
 
       {/* EXPORT */}
-      <GrassDivider tone="text-forest-deep" />
-      <section className="bg-forest-deep text-ivory px-6 md:px-10 py-28 md:py-40 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.18]">
-          <img
-            src={aerialFields}
-            alt=""
-            aria-hidden
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
+      <section className="bg-forest text-white px-6 lg:px-8 py-24 md:py-32 rounded-[3rem] mx-4 lg:mx-8 mb-24 shadow-2xl relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20 mix-blend-overlay">
+          <img src={aerialFields} alt="" aria-hidden className="w-full h-full object-cover" />
         </div>
-        <FloatingLeaves count={9} tone="text-gold" opacity={0.28} />
-        <div className="relative mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          <div className="lg:col-span-5">
-            <span className="eyebrow text-gold mb-6 block">{t("home.s04.eyebrow")}</span>
-            <h2 className="font-display text-5xl md:text-6xl tracking-[-0.03em] leading-[0.95] text-balance">
-              {t("home.s04.title.a")}{" "}
-              <span className="italic font-light">{t("home.s04.title.paperwork")}</span>{" "}
-              {t("home.s04.title.b")}
+        <div className="relative mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="lg:col-span-6">
+            <span className="inline-block py-1 px-4 rounded-full bg-white/20 text-white font-bold text-sm mb-6 uppercase tracking-wider">
+              {t("home.s04.eyebrow")}
+            </span>
+            <h2 className="font-display text-4xl md:text-6xl font-bold leading-tight mb-8">
+              {t("home.s04.title.a")} <span className="text-gold">{t("home.s04.title.paperwork")}</span> {t("home.s04.title.b")}
             </h2>
-            <p className="mt-8 text-base md:text-lg text-ivory/75 leading-relaxed max-w-[42ch]">
+            <p className="text-lg text-white/80 leading-relaxed max-w-xl">
               {t("home.s04.lede")}
             </p>
           </div>
 
-          <div className="lg:col-span-6 lg:col-start-7 space-y-8">
-            <dl className="grid grid-cols-2 gap-y-10 gap-x-8 border-t border-ivory/15 pt-10">
-              {(
-                [
-                  ["export.fact.origin", t("location.short")],
-                  ["export.fact.docs", t("export.fact.docs.v")],
-                  ["export.fact.containers", "20' / 40' / 40'HC"],
-                  ["export.fact.incoterms", t("export.fact.incoterms.v")],
-                ] as const
-              ).map(([k, v]) => (
+          <div className="lg:col-span-5 lg:col-start-8 space-y-8 bg-white/10 backdrop-blur-md p-10 rounded-3xl border border-white/20">
+            <dl className="grid grid-cols-2 gap-y-8 gap-x-6">
+              {[
+                ["export.fact.origin", t("location.short")],
+                ["export.fact.docs", t("export.fact.docs.v")],
+                ["export.fact.containers", "20' / 40' / 40'HC"],
+                ["export.fact.incoterms", t("export.fact.incoterms.v")],
+              ].map(([k, v]) => (
                 <div key={k}>
-                  <dt className="eyebrow text-ivory/55 mb-2.5">{t(k as TranslationKey)}</dt>
-                  <dd className="font-display text-2xl md:text-3xl text-ivory tracking-[-0.015em]">
-                    {v}
-                  </dd>
+                  <dt className="text-xs uppercase tracking-wider text-white/60 mb-2 font-bold">{t(k)}</dt>
+                  <dd className="font-display text-xl md:text-2xl font-bold">{v}</dd>
                 </div>
               ))}
             </dl>
 
-            <div className="pt-8 border-t border-ivory/15 flex flex-wrap items-center gap-6">
+            <div className="pt-8 border-t border-white/20">
               <Link
                 to="/export"
-                className="px-9 py-4 bg-ivory text-forest-deep text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-gold hover:text-ivory transition-colors"
+                className="w-full block text-center px-8 py-4 bg-white text-forest font-bold rounded-full hover:bg-gold transition-colors shadow-lg"
               >
                 {t("home.s04.cta")}
               </Link>
-              <span className="text-[11px] uppercase tracking-[0.22em] text-ivory/55">
-                {t("home.s04.note")}
-              </span>
             </div>
           </div>
         </div>
@@ -430,77 +331,65 @@ function HomePage() {
       <GrassDivider flip tone="text-forest-deep" />
 
       {/* COMMITMENT */}
-      <section className="px-6 md:px-10 py-28 md:py-40">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
-            <div className="lg:col-span-5">
-              <span className="eyebrow text-cocoa/70 mb-6 block">{t("home.s05.eyebrow")}</span>
-              <h2 className="font-display text-5xl md:text-6xl tracking-[-0.03em] leading-[0.95] text-forest-deep">
-                {t("home.s05.title.a")}{" "}
-                <span className="italic font-light text-olive">
-                  {t("home.s05.title.defend")}
-                </span>
-                .
-              </h2>
-            </div>
-            <p className="lg:col-span-6 lg:col-start-7 text-lg leading-[1.65] text-forest-deep/75 self-end max-w-[50ch]">
-              {t("home.s05.lede")}
-            </p>
+      <section className="px-6 lg:px-8 py-24 md:py-32 bg-white">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+             <span className="eyebrow block mb-4">{t("home.s05.eyebrow")}</span>
+             <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
+                {t("home.s05.title.a")} <span className="text-forest">{t("home.s05.title.defend")}</span>.
+             </h2>
+             <p className="text-lg text-slate-600 leading-relaxed">
+               {t("home.s05.lede")}
+             </p>
           </div>
 
-          <ol className="border-t border-line">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {COMMITMENTS.map((c, i) => (
-              <li
-                key={c.word}
-                className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 py-12 border-b border-line group"
-              >
-                <span className="md:col-span-1 font-display italic text-gold text-2xl">
+              <div key={c.word} className="bg-slate-50 p-10 rounded-3xl border border-slate-100 group hover:shadow-lg transition-all hover:-translate-y-1">
+                <div className="w-16 h-16 bg-forest/10 rounded-2xl flex items-center justify-center text-forest font-display text-3xl font-bold mb-8 group-hover:bg-forest group-hover:text-white transition-colors">
                   {c.n}
-                </span>
-                <h3 className="md:col-span-4 font-display text-4xl md:text-5xl tracking-[-0.025em] text-forest-deep leading-none group-hover:italic transition-all">
-                  {t(C_KEYS[i] as TranslationKey)}
+                </div>
+                <h3 className="font-display text-2xl font-bold text-slate-900 mb-4">
+                  {t(C_KEYS[i])}
                 </h3>
-                <p className="md:col-span-7 text-base md:text-lg text-forest-deep/75 leading-[1.65] max-w-[55ch] self-center">
-                  {t(C_BODY_KEYS[i] as TranslationKey)}
+                <p className="text-slate-600 leading-relaxed">
+                  {t(C_BODY_KEYS[i])}
                 </p>
-              </li>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="px-6 md:px-10 pb-12">
-        <div className="mx-auto max-w-[1400px] relative overflow-hidden border border-line">
+      <section className="px-6 lg:px-8 pb-24">
+        <div className="mx-auto max-w-7xl relative overflow-hidden rounded-[3rem] shadow-xl">
           <img
             src={landscapeMisty}
-            alt="Cameroon highlands at dawn"
+            alt="Cameroon highlands"
             className="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
           />
-          <div className="absolute inset-0 bg-forest-deep/85" />
-          <FloatingLeaves count={9} tone="text-gold" opacity={0.3} />
-          <div className="relative px-8 md:px-16 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
-            <div className="lg:col-span-8">
-              <span className="eyebrow text-gold mb-6 block">{t("home.s06.eyebrow")}</span>
-              <h2 className="font-display text-5xl md:text-7xl tracking-[-0.03em] leading-[0.95] text-ivory text-balance">
-                {t("home.s06.title.a")} <br />
-                <span className="italic font-light">{t("home.s06.title.b")}</span>
-              </h2>
-              <p className="mt-8 max-w-[50ch] text-base md:text-lg text-ivory/75 leading-relaxed">
-                {t("home.s06.lede")}
-              </p>
-            </div>
-            <div className="lg:col-span-3 lg:col-start-10 flex flex-col gap-4">
+          <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" />
+          <div className="relative px-8 md:px-16 py-24 md:py-32 text-center max-w-4xl mx-auto">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-forest/20 text-forest font-bold text-sm mb-6 uppercase tracking-wider">
+              {t("home.s06.eyebrow")}
+            </span>
+            <h2 className="font-display text-4xl md:text-6xl font-bold text-white leading-tight mb-8">
+              {t("home.s06.title.a")} <span className="text-forest">{t("home.s06.title.b")}</span>
+            </h2>
+            <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-10 max-w-2xl mx-auto">
+              {t("home.s06.lede")}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/contact"
-                className="px-9 py-5 bg-ivory text-forest-deep text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-gold hover:text-ivory transition-colors text-center"
+                className="w-full sm:w-auto px-10 py-5 bg-forest text-white font-bold rounded-full hover:bg-forest/90 transition-all shadow-lg"
               >
                 {t("hero.cta.partner")}
               </Link>
               <a
                 href="mailto:trade@greengoldagro.cm"
-                className="px-9 py-5 border border-ivory/30 text-ivory text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-ivory/10 transition-colors text-center"
+                className="w-full sm:w-auto px-10 py-5 bg-white/10 text-white font-bold rounded-full border border-white/20 hover:bg-white/20 transition-all backdrop-blur-md"
               >
                 trade@greengoldagro.cm
               </a>
@@ -514,9 +403,9 @@ function HomePage() {
 
 function Stat({ k, v }: { k: string; v: string }) {
   return (
-    <div>
-      <dt className="eyebrow text-cocoa/60 mb-2">{k}</dt>
-      <dd className="font-display text-xl md:text-2xl text-forest-deep tracking-[-0.015em]">{v}</dd>
+    <div className="flex flex-col gap-1">
+      <dt className="text-xs uppercase tracking-wider text-slate-500 font-bold">{k}</dt>
+      <dd className="font-display text-2xl font-bold text-slate-900">{v}</dd>
     </div>
   );
 }
@@ -533,20 +422,20 @@ function ProductTile({
   image: string;
 }) {
   return (
-    <article className="md:col-span-2 bg-ivory relative overflow-hidden min-h-[260px] group">
-      <img
-        src={image}
-        alt={title}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        loading="lazy"
-      />
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-forest-deep/90 to-transparent" />
-      <div className="absolute inset-0 p-5 flex flex-col justify-between text-ivory">
-        <div className="flex justify-between">
-          <span className="eyebrow opacity-80">{code}</span>
-          <span className="eyebrow opacity-80">{category}</span>
+    <article className="bg-slate-50 rounded-3xl overflow-hidden group shadow-sm hover:shadow-md transition-all border border-slate-100 flex flex-col h-[380px]">
+      <div className="relative h-2/3 overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-forest-deep rounded-full text-[10px] font-bold uppercase tracking-wider">
+          {code} · {category}
         </div>
-        <h3 className="font-display text-xl tracking-[-0.015em] leading-tight">{title}</h3>
+      </div>
+      <div className="p-6 bg-white flex-1 flex flex-col justify-center">
+        <h3 className="font-display text-2xl font-bold text-slate-900 group-hover:text-forest transition-colors">{title}</h3>
       </div>
     </article>
   );

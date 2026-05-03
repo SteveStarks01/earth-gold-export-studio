@@ -16,21 +16,20 @@ function NotFoundComponent() {
 function NotFoundInner() {
   const t = useT();
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col pt-24 bg-slate-50">
       <SiteHeader />
       <div className="flex-1 flex items-center justify-center px-6 py-32">
         <div className="max-w-xl text-center">
-          <span className="eyebrow text-cocoa/60 block mb-6">{t("nf.eyebrow")}</span>
-          <h1 className="font-display text-7xl md:text-8xl tracking-[-0.03em] text-forest-deep leading-none">
-            {t("nf.title.a")}{" "}
-            <span className="italic font-light text-olive">{t("nf.title.map")}</span>.
+          <span className="eyebrow block mb-4">{t("nf.eyebrow")}</span>
+          <h1 className="font-display text-5xl md:text-7xl font-bold text-slate-900 mb-6">
+            {t("nf.title.a")} <span className="text-forest">{t("nf.title.map")}</span>.
           </h1>
-          <p className="mt-6 text-base text-forest-deep/70 max-w-md mx-auto leading-relaxed">
+          <p className="text-lg text-slate-600 mb-10 leading-relaxed">
             {t("nf.lede")}
           </p>
           <Link
             to="/"
-            className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-forest text-ivory text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-forest-deep transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 bg-forest text-white font-bold rounded-full hover:bg-forest/90 transition-colors shadow-lg shadow-forest/20"
           >
             {t("nf.cta")}
           </Link>
@@ -72,7 +71,7 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap",
       },
       {
         rel: "stylesheet",
@@ -102,7 +101,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <I18nProvider>
-      <div className="min-h-screen flex flex-col bg-ivory text-forest-deep">
+      <div className="min-h-screen flex flex-col bg-white text-slate-800 selection:bg-forest/20 selection:text-forest-deep">
         <SiteHeader />
         <main className="flex-1">
           <Outlet />

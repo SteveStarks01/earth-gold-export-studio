@@ -64,104 +64,104 @@ export function ProductsPage() {
   const t = useT();
   return (
     <>
-      <section className="relative px-6 md:px-10 pt-20 md:pt-28 pb-20 overflow-hidden">
-        <FloatingLeaves count={8} tone="text-olive" opacity={0.22} />
-        <div className="relative mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+      <section className="relative px-6 lg:px-8 pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-slate-50">
+        <div className="relative mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
           <div className="lg:col-span-8">
-            <span className="eyebrow text-cocoa/70 mb-8 block">{t("products.eyebrow")}</span>
-            <h1 className="font-display text-[clamp(2.75rem,7vw,7rem)] leading-[0.9] tracking-[-0.035em] text-forest-deep">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-forest/10 text-forest font-bold text-sm mb-6 uppercase tracking-wider">{t("products.eyebrow")}</span>
+            <h1 className="font-display text-5xl md:text-7xl font-bold text-slate-900 leading-tight">
               {t("products.title.a")} <br />
-              <span className="italic font-light text-olive">{t("products.title.b")}</span>
+              <span className="text-forest">{t("products.title.b")}</span>
             </h1>
           </div>
-          <p className="lg:col-span-4 text-base leading-[1.7] text-forest-deep/75">
+          <p className="lg:col-span-4 text-lg text-slate-600 leading-relaxed font-medium">
             {t("products.lede")}
           </p>
         </div>
       </section>
 
-      <section className="px-6 md:px-10 pb-24 space-y-px bg-line">
-        {FEATURED.map((p, i) => (
-          <LeafReveal
-            key={p.key}
-            className={`bg-ivory grid grid-cols-1 lg:grid-cols-12 gap-0 ${
-              i % 2 === 1 ? "lg:[&>.media]:order-2" : ""
-            }`}
-          >
-            <div
-              data-leaf-stagger
-              className="media lg:col-span-6 relative aspect-[4/3] lg:aspect-auto lg:min-h-[520px] overflow-hidden"
+      <section className="px-6 lg:px-8 pb-32 bg-slate-50">
+        <div className="mx-auto max-w-7xl space-y-16">
+          {FEATURED.map((p, i) => (
+            <LeafReveal
+              key={p.key}
+              className={`bg-white rounded-[2.5rem] grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden shadow-sm border border-slate-100 ${
+                i % 2 === 1 ? "lg:[&>.media]:order-2" : ""
+              }`}
             >
-              <img
-                src={p.image}
-                alt={t(`products.${p.key}.name` as TranslationKey)}
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="lg:col-span-6 p-10 md:p-16 flex flex-col justify-between gap-12">
-              <div data-leaf-stagger>
-                <span className="eyebrow text-gold mb-6 block">
-                  {t("products.lot")} {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2 className="font-display text-4xl md:text-6xl tracking-[-0.025em] leading-[0.95] text-forest-deep mb-6">
-                  {t(`products.${p.key}.name` as TranslationKey)}
-                </h2>
-                <p className="text-base md:text-lg leading-[1.65] text-forest-deep/75 max-w-[48ch]">
-                  {t(`products.${p.key}.blurb` as TranslationKey)}
-                </p>
+              <div
+                data-leaf-stagger
+                className="media lg:col-span-6 relative aspect-[4/3] lg:aspect-auto lg:min-h-[520px] overflow-hidden"
+              >
+                <img
+                  src={p.image}
+                  alt={t(`products.${p.key}.name` as TranslationKey)}
+                  className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                  loading="lazy"
+                />
               </div>
-              <dl data-leaf-stagger className="grid grid-cols-3 gap-6 pt-8 border-t border-line">
-                {p.facts.map(([k, v]) => (
-                  <div key={k}>
-                    <dt className="eyebrow text-cocoa/60 mb-1.5">{t(k as TranslationKey)}</dt>
-                    <dd className="font-display text-lg md:text-xl text-forest-deep tracking-[-0.015em]">
-                      {v}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </LeafReveal>
-        ))}
+              <div className="lg:col-span-6 p-10 md:p-16 flex flex-col justify-between gap-12">
+                <div data-leaf-stagger>
+                  <span className="inline-block py-1 px-3 rounded-full bg-forest/10 text-forest font-bold text-xs mb-6 uppercase tracking-wider">
+                    {t("products.lot")} {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
+                    {t(`products.${p.key}.name` as TranslationKey)}
+                  </h2>
+                  <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
+                    {t(`products.${p.key}.blurb` as TranslationKey)}
+                  </p>
+                </div>
+                <dl data-leaf-stagger className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-slate-200">
+                  {p.facts.map(([k, v]) => (
+                    <div key={k}>
+                      <dt className="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2">{t(k as TranslationKey)}</dt>
+                      <dd className="font-display text-lg font-bold text-slate-900">
+                        {v}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </LeafReveal>
+          ))}
+        </div>
       </section>
 
-      <GrassDivider tone="text-ivory-warm" />
-      <section className="bg-ivory-warm px-6 md:px-10 py-28">
-        <div className="mx-auto max-w-[1400px]">
-          <h2 className="font-display text-4xl md:text-5xl tracking-[-0.025em] text-forest-deep mb-10 leading-[1]">
+      <section className="bg-white px-6 lg:px-8 py-32 rounded-t-[3rem] mt-[-3rem] relative z-10 shadow-sm border-t border-slate-100">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-12">
             {t("products.fullRegister")}
           </h2>
-          <ul className="border-t border-line">
+          <ul className="grid grid-cols-1 gap-4">
             {PRODUCTS.map((p) => (
               <li
                 key={p.code}
-                className="grid grid-cols-12 gap-4 py-6 border-b border-line items-baseline"
+                className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 px-8 bg-slate-50 rounded-2xl border border-slate-100 items-center hover:shadow-md transition-shadow"
               >
-                <span className="col-span-1 font-display italic text-gold text-lg">{p.code}</span>
-                <span className="col-span-3 eyebrow text-cocoa/70">{p.category}</span>
-                <span className="col-span-12 md:col-span-4 font-display text-xl md:text-2xl tracking-[-0.015em] text-forest-deep">
+                <span className="md:col-span-1 font-display text-forest font-bold text-lg">{p.code}</span>
+                <span className="md:col-span-3 text-xs uppercase tracking-wider text-slate-500 font-bold">{p.category}</span>
+                <span className="md:col-span-4 font-display text-xl md:text-2xl font-bold text-slate-900">
                   {p.name}
                 </span>
-                <span className="col-span-7 md:col-span-2 text-xs italic text-forest-deep/70">
+                <span className="md:col-span-2 text-sm text-slate-500 italic">
                   {p.origin}
                 </span>
-                <span className="col-span-12 md:col-span-2 text-xs text-forest-deep/60 text-right">
+                <span className="md:col-span-2 text-sm text-slate-400 font-medium md:text-right">
                   {p.note}
                 </span>
               </li>
             ))}
           </ul>
-          <div className="mt-16 flex flex-wrap gap-4 justify-end">
+          <div className="mt-16 flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
             <Link
               to="/contact"
-              className="px-9 py-4 bg-forest text-ivory text-[11px] uppercase tracking-[0.25em] font-semibold"
+              className="px-10 py-5 bg-forest text-white font-bold rounded-full hover:bg-forest/90 transition-all shadow-lg shadow-forest/20 text-center"
             >
               {t("products.cta.quote")}
             </Link>
             <Link
               to="/export"
-              className="px-9 py-4 border border-forest-deep/20 text-forest-deep text-[11px] uppercase tracking-[0.25em] font-semibold hover:border-forest-deep"
+              className="px-10 py-5 bg-white text-slate-800 font-bold rounded-full border border-slate-200 hover:border-forest hover:text-forest transition-all shadow-sm text-center"
             >
               {t("products.cta.export")}
             </Link>

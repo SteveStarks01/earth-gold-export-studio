@@ -39,32 +39,31 @@ function ContactPage() {
 
   return (
     <>
-      <section className="relative px-6 md:px-10 pt-20 md:pt-28 pb-16 overflow-hidden">
-        <FloatingLeaves count={7} tone="text-olive" opacity={0.22} />
-        <div className="relative mx-auto max-w-[1400px]">
-          <span className="eyebrow text-cocoa/70 mb-8 block">{t("contact.eyebrow")}</span>
-          <h1 className="font-display text-[clamp(2.75rem,7vw,7rem)] leading-[0.9] tracking-[-0.035em] text-forest-deep max-w-[16ch]">
+      <section className="relative px-6 lg:px-8 pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-slate-50">
+        <div className="relative mx-auto max-w-7xl">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-forest/10 text-forest font-bold text-sm mb-6 uppercase tracking-wider">{t("contact.eyebrow")}</span>
+          <h1 className="font-display text-5xl md:text-7xl font-bold text-slate-900 leading-tight max-w-4xl">
             {t("contact.title.a")}{" "}
-            <span className="italic font-light text-olive">{t("contact.title.tradedesk")}</span>
+            <span className="text-forest">{t("contact.title.tradedesk")}</span>
             {t("contact.title.suffix")}
           </h1>
         </div>
       </section>
 
-      <section className="px-6 md:px-10 pb-28">
-        <div className="mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          <div className="lg:col-span-7">
+      <section className="px-6 lg:px-8 pb-32 bg-slate-50">
+        <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="lg:col-span-7 bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-slate-100">
             {submitted ? (
-              <div className="border border-line p-12 md:p-16">
-                <span className="eyebrow text-gold mb-4 block">{t("contact.received.eyebrow")}</span>
-                <h2 className="font-display text-4xl md:text-5xl tracking-[-0.025em] text-forest-deep leading-[1]">
+              <div className="text-center py-16">
+                <div className="w-20 h-20 bg-forest/10 rounded-full flex items-center justify-center text-forest text-4xl mx-auto mb-8">✓</div>
+                <h2 className="font-display text-4xl font-bold text-slate-900 mb-6">
                   {t("contact.received.title")}
                 </h2>
-                <p className="mt-6 text-base text-forest-deep/75 max-w-[42ch] leading-relaxed">
+                <p className="text-lg text-slate-600 max-w-lg mx-auto leading-relaxed">
                   {t("contact.received.lede.a")}
                   <a
                     href="mailto:trade@greengoldagro.cm"
-                    className="border-b border-forest-deep/40 hover:border-forest-deep"
+                    className="text-forest font-bold hover:underline"
                   >
                     trade@greengoldagro.cm
                   </a>
@@ -77,27 +76,31 @@ function ContactPage() {
                   e.preventDefault();
                   setSubmitted(true);
                 }}
-                className="space-y-10"
+                className="space-y-8"
               >
-                <Field label={t("contact.field.name")} name="name" required />
-                <Field label={t("contact.field.company")} name="company" />
-                <Field label={t("contact.field.email")} name="email" type="email" required />
-                <Field label={t("contact.field.country")} name="country" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <Field label={t("contact.field.name")} name="name" required />
+                  <Field label={t("contact.field.company")} name="company" />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <Field label={t("contact.field.email")} name="email" type="email" required />
+                  <Field label={t("contact.field.country")} name="country" />
+                </div>
 
-                <div>
-                  <label className="eyebrow text-cocoa/70 mb-4 block">
+                <div className="pt-4">
+                  <label className="text-sm font-bold text-slate-700 mb-4 block">
                     {t("contact.field.subject")}
                   </label>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {SUBJECT_KEYS.map((s) => (
                       <button
                         type="button"
                         key={s}
                         onClick={() => setSubject(s)}
-                        className={`px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] font-semibold border transition-colors ${
+                        className={`px-5 py-2.5 text-xs font-bold rounded-full transition-all border ${
                           subject === s
-                            ? "bg-forest text-ivory border-forest"
-                            : "bg-transparent text-forest-deep border-line hover:border-forest-deep"
+                            ? "bg-forest border-forest text-white shadow-sm"
+                            : "bg-white border-slate-200 text-slate-600 hover:border-forest hover:text-forest"
                         }`}
                       >
                         {t(s as TranslationKey)}
@@ -106,8 +109,8 @@ function ContactPage() {
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="eyebrow text-cocoa/70 mb-3 block">
+                <div className="pt-4">
+                  <label htmlFor="message" className="text-sm font-bold text-slate-700 mb-3 block">
                     {t("contact.field.message")}
                   </label>
                   <textarea
@@ -116,64 +119,68 @@ function ContactPage() {
                     rows={6}
                     required
                     placeholder={t("contact.field.message.placeholder")}
-                    className="w-full bg-transparent border-b border-line py-3 text-base text-forest-deep focus:outline-none focus:border-forest-deep transition-colors resize-none placeholder:text-forest-deep/35"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-slate-900 focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest transition-all resize-none placeholder:text-slate-400"
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="px-10 py-5 bg-forest text-ivory text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-forest-deep transition-colors"
-                >
-                  {t("contact.submit")}
-                </button>
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto px-10 py-4 bg-forest text-white font-bold rounded-full hover:bg-forest/90 transition-all shadow-lg shadow-forest/20"
+                  >
+                    {t("contact.submit")}
+                  </button>
+                </div>
               </form>
             )}
           </div>
 
-          <aside className="lg:col-span-4 lg:col-start-9 space-y-12">
-            <div>
-              <span className="eyebrow text-cocoa/70 mb-4 block">
+          <aside className="lg:col-span-5 space-y-8">
+            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+              <span className="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4 block">
                 {t("contact.aside.tradedesk")}
               </span>
               <a
                 href="mailto:trade@greengoldagro.cm"
-                className="font-display text-2xl md:text-3xl tracking-[-0.015em] text-forest-deep border-b border-line hover:border-forest-deep block pb-2"
+                className="font-display text-2xl font-bold text-forest hover:text-forest-deep transition-colors block mb-2"
               >
                 trade@greengoldagro.cm
               </a>
               <a
                 href="tel:+237000000000"
-                className="block mt-3 font-display text-xl tabular-nums text-forest-deep/80"
+                className="font-display text-xl font-bold text-slate-700"
               >
                 +237 000 000 000
               </a>
             </div>
 
-            <div className="border-t border-line pt-8">
-              <span className="eyebrow text-cocoa/70 mb-4 block">{t("contact.aside.hours")}</span>
-              <p className="text-sm text-forest-deep/80 leading-relaxed whitespace-pre-line">
+            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+              <span className="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4 block">{t("contact.aside.hours")}</span>
+              <p className="text-slate-600 leading-relaxed font-medium whitespace-pre-line">
                 {t("contact.aside.hours.v")}
               </p>
             </div>
 
-            <div className="border-t border-line pt-8">
-              <span className="eyebrow text-cocoa/70 mb-4 block">
-                {t("contact.aside.address")}
-              </span>
-              <address className="not-italic text-sm text-forest-deep/80 leading-relaxed">
-                Green Gold Agro Farm
-                <br />
-                {t("location.douala-edea")}
-                <br />
-                {t("contact.aside.country")}
-              </address>
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <span className="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4 block">
+                  {t("contact.aside.address")}
+                </span>
+                <address className="not-italic text-slate-600 leading-relaxed font-medium">
+                  Green Gold Agro Farm
+                  <br />
+                  {t("location.douala-edea")}
+                  <br />
+                  {t("contact.aside.country")}
+                </address>
+              </div>
 
-            <div className="border-t border-line pt-8">
-              <span className="eyebrow text-cocoa/70 mb-4 block">{t("contact.aside.langs")}</span>
-              <p className="font-display text-xl text-forest-deep">
-                Français · <span className="italic">English</span>
-              </p>
+              <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <span className="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4 block">{t("contact.aside.langs")}</span>
+                <p className="font-display text-xl font-bold text-slate-900">
+                  Français · <span className="text-forest">English</span>
+                </p>
+              </div>
             </div>
           </aside>
         </div>
@@ -195,16 +202,16 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="eyebrow text-cocoa/70 mb-3 block">
+      <label htmlFor={name} className="text-sm font-bold text-slate-700 mb-3 block">
         {label}
-        {required ? " *" : ""}
+        {required ? <span className="text-red-500 ml-1">*</span> : ""}
       </label>
       <input
         id={name}
         name={name}
         type={type}
         required={required}
-        className="w-full bg-transparent border-b border-line py-3 text-base text-forest-deep focus:outline-none focus:border-forest-deep transition-colors"
+        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest transition-all"
       />
     </div>
   );
