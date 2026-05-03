@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import landscapeMisty from "@/assets/landscape-misty.jpg";
+import { useT } from "@/lib/i18n/provider";
+import type { TranslationKey } from "@/lib/i18n/dictionary";
+import { FloatingLeaves } from "@/components/floating-leaves";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -22,43 +25,50 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const SUBJECTS = ["Buyer inquiry", "Distribution", "Sample request", "General"] as const;
+const SUBJECT_KEYS = [
+  "contact.subject.buyer",
+  "contact.subject.distribution",
+  "contact.subject.sample",
+  "contact.subject.general",
+] as const;
 
 function ContactPage() {
+  const t = useT();
   const [submitted, setSubmitted] = useState(false);
-  const [subject, setSubject] = useState<(typeof SUBJECTS)[number]>("Buyer inquiry");
+  const [subject, setSubject] = useState<(typeof SUBJECT_KEYS)[number]>("contact.subject.buyer");
 
   return (
     <>
-      <section className="px-6 md:px-10 pt-20 md:pt-28 pb-16">
-        <div className="mx-auto max-w-[1400px]">
-          <span className="eyebrow text-cocoa/70 mb-8 block">§ Contact</span>
+      <section className="relative px-6 md:px-10 pt-20 md:pt-28 pb-16 overflow-hidden">
+        <FloatingLeaves count={7} tone="text-olive" opacity={0.22} />
+        <div className="relative mx-auto max-w-[1400px]">
+          <span className="eyebrow text-cocoa/70 mb-8 block">{t("contact.eyebrow")}</span>
           <h1 className="font-display text-[clamp(2.75rem,7vw,7rem)] leading-[0.9] tracking-[-0.035em] text-forest-deep max-w-[16ch]">
-            A direct line to our <span className="italic font-light text-olive">trade desk</span>.
+            {t("contact.title.a")}{" "}
+            <span className="italic font-light text-olive">{t("contact.title.tradedesk")}</span>
+            {t("contact.title.suffix")}
           </h1>
         </div>
       </section>
 
       <section className="px-6 md:px-10 pb-28">
         <div className="mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Form */}
           <div className="lg:col-span-7">
             {submitted ? (
               <div className="border border-line p-12 md:p-16">
-                <span className="eyebrow text-gold mb-4 block">Received</span>
+                <span className="eyebrow text-gold mb-4 block">{t("contact.received.eyebrow")}</span>
                 <h2 className="font-display text-4xl md:text-5xl tracking-[-0.025em] text-forest-deep leading-[1]">
-                  Your inquiry is in the file.
+                  {t("contact.received.title")}
                 </h2>
                 <p className="mt-6 text-base text-forest-deep/75 max-w-[42ch] leading-relaxed">
-                  A member of the trade desk will reply within two working days. For time-sensitive
-                  matters, write directly to{" "}
+                  {t("contact.received.lede.a")}
                   <a
                     href="mailto:trade@greengoldagro.cm"
                     className="border-b border-forest-deep/40 hover:border-forest-deep"
                   >
                     trade@greengoldagro.cm
                   </a>
-                  .
+                  {t("contact.received.lede.b")}
                 </p>
               </div>
             ) : (
@@ -69,15 +79,17 @@ function ContactPage() {
                 }}
                 className="space-y-10"
               >
-                <Field label="Full name" name="name" required />
-                <Field label="Company / organisation" name="company" />
-                <Field label="Email" name="email" type="email" required />
-                <Field label="Country" name="country" />
+                <Field label={t("contact.field.name")} name="name" required />
+                <Field label={t("contact.field.company")} name="company" />
+                <Field label={t("contact.field.email")} name="email" type="email" required />
+                <Field label={t("contact.field.country")} name="country" />
 
                 <div>
-                  <label className="eyebrow text-cocoa/70 mb-4 block">Subject</label>
+                  <label className="eyebrow text-cocoa/70 mb-4 block">
+                    {t("contact.field.subject")}
+                  </label>
                   <div className="flex flex-wrap gap-2">
-                    {SUBJECTS.map((s) => (
+                    {SUBJECT_KEYS.map((s) => (
                       <button
                         type="button"
                         key={s}
@@ -88,25 +100,22 @@ function ContactPage() {
                             : "bg-transparent text-forest-deep border-line hover:border-forest-deep"
                         }`}
                       >
-                        {s}
+                        {t(s as TranslationKey)}
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="eyebrow text-cocoa/70 mb-3 block"
-                  >
-                    Message
+                  <label htmlFor="message" className="eyebrow text-cocoa/70 mb-3 block">
+                    {t("contact.field.message")}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={6}
                     required
-                    placeholder="Crop, volume, destination, target window…"
+                    placeholder={t("contact.field.message.placeholder")}
                     className="w-full bg-transparent border-b border-line py-3 text-base text-forest-deep focus:outline-none focus:border-forest-deep transition-colors resize-none placeholder:text-forest-deep/35"
                   />
                 </div>
@@ -115,16 +124,17 @@ function ContactPage() {
                   type="submit"
                   className="px-10 py-5 bg-forest text-ivory text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-forest-deep transition-colors"
                 >
-                  Send inquiry
+                  {t("contact.submit")}
                 </button>
               </form>
             )}
           </div>
 
-          {/* Sidebar */}
           <aside className="lg:col-span-4 lg:col-start-9 space-y-12">
             <div>
-              <span className="eyebrow text-cocoa/70 mb-4 block">Trade desk</span>
+              <span className="eyebrow text-cocoa/70 mb-4 block">
+                {t("contact.aside.tradedesk")}
+              </span>
               <a
                 href="mailto:trade@greengoldagro.cm"
                 className="font-display text-2xl md:text-3xl tracking-[-0.015em] text-forest-deep border-b border-line hover:border-forest-deep block pb-2"
@@ -140,27 +150,27 @@ function ContactPage() {
             </div>
 
             <div className="border-t border-line pt-8">
-              <span className="eyebrow text-cocoa/70 mb-4 block">Office hours</span>
-              <p className="text-sm text-forest-deep/80 leading-relaxed">
-                Monday — Friday
-                <br />
-                08:00 — 17:00 WAT
+              <span className="eyebrow text-cocoa/70 mb-4 block">{t("contact.aside.hours")}</span>
+              <p className="text-sm text-forest-deep/80 leading-relaxed whitespace-pre-line">
+                {t("contact.aside.hours.v")}
               </p>
             </div>
 
             <div className="border-t border-line pt-8">
-              <span className="eyebrow text-cocoa/70 mb-4 block">Address</span>
+              <span className="eyebrow text-cocoa/70 mb-4 block">
+                {t("contact.aside.address")}
+              </span>
               <address className="not-italic text-sm text-forest-deep/80 leading-relaxed">
                 Green Gold Agro Farm
                 <br />
-                Douala — Edéa
+                {t("location.douala-edea")}
                 <br />
-                Republic of Cameroon
+                {t("contact.aside.country")}
               </address>
             </div>
 
             <div className="border-t border-line pt-8">
-              <span className="eyebrow text-cocoa/70 mb-4 block">Languages</span>
+              <span className="eyebrow text-cocoa/70 mb-4 block">{t("contact.aside.langs")}</span>
               <p className="font-display text-xl text-forest-deep">
                 Français · <span className="italic">English</span>
               </p>

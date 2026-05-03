@@ -3,27 +3,36 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { I18nProvider } from "@/lib/i18n/provider";
+import { I18nProvider, useT } from "@/lib/i18n/provider";
 
 function NotFoundComponent() {
+  return (
+    <I18nProvider>
+      <NotFoundInner />
+    </I18nProvider>
+  );
+}
+
+function NotFoundInner() {
+  const t = useT();
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
       <div className="flex-1 flex items-center justify-center px-6 py-32">
         <div className="max-w-xl text-center">
-          <span className="eyebrow text-cocoa/60 block mb-6">Error · 404</span>
+          <span className="eyebrow text-cocoa/60 block mb-6">{t("nf.eyebrow")}</span>
           <h1 className="font-display text-7xl md:text-8xl tracking-[-0.03em] text-forest-deep leading-none">
-            Off the <span className="italic font-light text-olive">map</span>.
+            {t("nf.title.a")}{" "}
+            <span className="italic font-light text-olive">{t("nf.title.map")}</span>.
           </h1>
           <p className="mt-6 text-base text-forest-deep/70 max-w-md mx-auto leading-relaxed">
-            The page you're looking for is not in our archive. Return to the homestead and continue
-            from there.
+            {t("nf.lede")}
           </p>
           <Link
             to="/"
             className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-forest text-ivory text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-forest-deep transition-colors"
           >
-            Return home
+            {t("nf.cta")}
           </Link>
         </div>
       </div>

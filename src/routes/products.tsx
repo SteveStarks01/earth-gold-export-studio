@@ -4,6 +4,11 @@ import producePineapple from "@/assets/produce-pineapple.jpg";
 import produceRoots from "@/assets/produce-roots.jpg";
 import textureCocoa from "@/assets/texture-cocoa.jpg";
 import { PRODUCTS } from "@/lib/content";
+import { useT } from "@/lib/i18n/provider";
+import type { TranslationKey } from "@/lib/i18n/dictionary";
+import { FloatingLeaves } from "@/components/floating-leaves";
+import { LeafReveal } from "@/components/leaf-reveal";
+import { GrassDivider } from "@/components/grass-divider";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -27,93 +32,89 @@ export const Route = createFileRoute("/products")({
 
 const FEATURED = [
   {
-    name: "Fermented Cocoa Beans",
+    key: "feat1",
     image: textureCocoa,
-    blurb:
-      "Sun-dried on raised platforms across the South and Centre. Sortable to grade A, packed for ocean transit.",
     facts: [
-      ["Origin", "South · Centre"],
-      ["Grade", "A · sortable"],
-      ["Pack", "Jute · 60 kg"],
+      ["products.f.origin", "South · Centre"],
+      ["products.f.grade", "A · sortable"],
+      ["products.f.pack", "Jute · 60 kg"],
     ],
   },
   {
-    name: "Cameroon Pineapple",
+    key: "feat2",
     image: producePineapple,
-    blurb:
-      "Volcanic-foothill pineapple, calibrated by weight and brix, shipped under cold chain on request.",
     facts: [
-      ["Origin", "Littoral foothills"],
-      ["Calibre", "8 · 10 · 12"],
-      ["Pack", "Carton · single layer"],
+      ["products.f.origin", "Littoral foothills"],
+      ["products.f.calibre", "8 · 10 · 12"],
+      ["products.f.pack", "Carton · single layer"],
     ],
   },
   {
-    name: "Ginger & Garlic",
+    key: "feat3",
     image: produceRoots,
-    blurb:
-      "Hand-harvested rhizomes and bulbs, cured and aroma-graded, available in dried or fresh-pack lots.",
     facts: [
-      ["Origin", "West · Adamawa"],
-      ["Form", "Fresh · dried · powder"],
-      ["Pack", "Mesh · carton"],
+      ["products.f.origin", "West · Adamawa"],
+      ["products.f.form", "Fresh · dried · powder"],
+      ["products.f.pack", "Mesh · carton"],
     ],
   },
-];
+] as const;
 
 export function ProductsPage() {
+  const t = useT();
   return (
     <>
-      <section className="px-6 md:px-10 pt-20 md:pt-28 pb-20">
-        <div className="mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+      <section className="relative px-6 md:px-10 pt-20 md:pt-28 pb-20 overflow-hidden">
+        <FloatingLeaves count={8} tone="text-olive" opacity={0.22} />
+        <div className="relative mx-auto max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
           <div className="lg:col-span-8">
-            <span className="eyebrow text-cocoa/70 mb-8 block">§ Catalogue</span>
+            <span className="eyebrow text-cocoa/70 mb-8 block">{t("products.eyebrow")}</span>
             <h1 className="font-display text-[clamp(2.75rem,7vw,7rem)] leading-[0.9] tracking-[-0.035em] text-forest-deep">
-              Eleven crops. <br />
-              <span className="italic font-light text-olive">One standard.</span>
+              {t("products.title.a")} <br />
+              <span className="italic font-light text-olive">{t("products.title.b")}</span>
             </h1>
           </div>
           <p className="lg:col-span-4 text-base leading-[1.7] text-forest-deep/75">
-            Each lot is sampled at origin, calibrated at our handling site, and re-checked before
-            container loading. Specifications below are indicative — bespoke lots are quoted on
-            inquiry.
+            {t("products.lede")}
           </p>
         </div>
       </section>
 
-      {/* Featured editorial entries */}
       <section className="px-6 md:px-10 pb-24 space-y-px bg-line">
         {FEATURED.map((p, i) => (
-          <article
-            key={p.name}
+          <LeafReveal
+            key={p.key}
             className={`bg-ivory grid grid-cols-1 lg:grid-cols-12 gap-0 ${
               i % 2 === 1 ? "lg:[&>.media]:order-2" : ""
             }`}
           >
-            <div className="media lg:col-span-6 relative aspect-[4/3] lg:aspect-auto lg:min-h-[520px] overflow-hidden">
+            <div
+              data-leaf-stagger
+              className="media lg:col-span-6 relative aspect-[4/3] lg:aspect-auto lg:min-h-[520px] overflow-hidden"
+            >
               <img
                 src={p.image}
-                alt={p.name}
+                alt={t(`products.${p.key}.name` as TranslationKey)}
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />
             </div>
             <div className="lg:col-span-6 p-10 md:p-16 flex flex-col justify-between gap-12">
-              <div>
+              <div data-leaf-stagger>
                 <span className="eyebrow text-gold mb-6 block">
-                  Lot {String(i + 1).padStart(2, "0")}
+                  {t("products.lot")} {String(i + 1).padStart(2, "0")}
                 </span>
                 <h2 className="font-display text-4xl md:text-6xl tracking-[-0.025em] leading-[0.95] text-forest-deep mb-6">
-                  {p.name}
+                  {t(`products.${p.key}.name` as TranslationKey)}
                 </h2>
                 <p className="text-base md:text-lg leading-[1.65] text-forest-deep/75 max-w-[48ch]">
-                  {p.blurb}
+                  {t(`products.${p.key}.blurb` as TranslationKey)}
                 </p>
               </div>
-              <dl className="grid grid-cols-3 gap-6 pt-8 border-t border-line">
+              <dl data-leaf-stagger className="grid grid-cols-3 gap-6 pt-8 border-t border-line">
                 {p.facts.map(([k, v]) => (
                   <div key={k}>
-                    <dt className="eyebrow text-cocoa/60 mb-1.5">{k}</dt>
+                    <dt className="eyebrow text-cocoa/60 mb-1.5">{t(k as TranslationKey)}</dt>
                     <dd className="font-display text-lg md:text-xl text-forest-deep tracking-[-0.015em]">
                       {v}
                     </dd>
@@ -121,15 +122,15 @@ export function ProductsPage() {
                 ))}
               </dl>
             </div>
-          </article>
+          </LeafReveal>
         ))}
       </section>
 
-      {/* Full register */}
-      <section className="px-6 md:px-10 py-28">
+      <GrassDivider tone="text-ivory-warm" />
+      <section className="bg-ivory-warm px-6 md:px-10 py-28">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="font-display text-4xl md:text-5xl tracking-[-0.025em] text-forest-deep mb-10 leading-[1]">
-            The full register.
+            {t("products.fullRegister")}
           </h2>
           <ul className="border-t border-line">
             {PRODUCTS.map((p) => (
@@ -156,13 +157,13 @@ export function ProductsPage() {
               to="/contact"
               className="px-9 py-4 bg-forest text-ivory text-[11px] uppercase tracking-[0.25em] font-semibold"
             >
-              Request a quote
+              {t("products.cta.quote")}
             </Link>
             <Link
               to="/export"
               className="px-9 py-4 border border-forest-deep/20 text-forest-deep text-[11px] uppercase tracking-[0.25em] font-semibold hover:border-forest-deep"
             >
-              Export terms
+              {t("products.cta.export")}
             </Link>
           </div>
         </div>
